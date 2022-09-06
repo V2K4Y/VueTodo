@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-Events</title>
+    <script src="https://unpkg.com/vue@3"></script>
+     <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    
+    <div id="app">
+    
+         <form @submit.prevent="addTask">
+            <input v-model="newTodo" placeholder="enter new todo">
+
+            <button>AddTodo</button>
+         </form>
+        
+         <ul> 
+
+            <li  v-for="todo in todos" :key="todo.id">
+                <input type="checkbox" name="" id="" @input="toggle(todo.id)">
+                  
+                 <del v-if="todo.checked">{{todo.text}}</del>
+                  <span v-else>{{todo.text}}</span>      
+                <button @click="editTask(todo.id)">edit</button>
+                <button @click="removeTask(todo.id)">delete</button>
+
+            </li>
+           
+         </ul>
+   
+        
+         
+    
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
