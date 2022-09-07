@@ -6,16 +6,20 @@ createApp({
          return{
           newTodo : "" ,
           todos : [] ,
-          
+          display : false ,
+        //   completed : [],
+        
          } 
     },
 
     methods : {
         addTask(){
+
             if(this.newTodo.length  === 0 ){
                 alert("Input value is null") ;
+                
                 return ;
-            }
+           }
             this.todos.push({id : id++ , text : this.newTodo ,  checked : false }) ;
             this.newTodo = '';
             console.log("addTask is invoked")
@@ -23,10 +27,31 @@ createApp({
 
         toggle(key){
             let idx = this.todos.findIndex((obj) => obj.id === key ) ;
-             this.todos[idx].checked = !this.todos[idx].checked 
-             console.log("cmpltd is invoked") ;
 
-             console.log(this.todos[idx].checked);
+             this.todos[idx].checked = !this.todos[idx].checked   ;
+            
+   
+
+             for(let i = 0 ; i<this.todos.length ; i++){
+                if(this.todos[i].checked === true){
+                    this.display =  true ;
+                    break ;
+                }
+                else 
+                   this.display = false
+             }
+
+          
+            
+            //  if(this.todos[idx].checked){
+            //     this.completed.push(this.todos[idx]) ;
+            //  }
+             
+            //  // filtering out completed task 
+            //  this.todos =this.todos.filter((elem) => elem.checked == false ) ;
+            //  console.log("cmpltd is invoked") ;
+
+            //  console.log(this.todos[idx].checked);
         },
         removeTask(key){
 
